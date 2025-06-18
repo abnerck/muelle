@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Playa | Playa del Carmen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- ESTILOS CSS (LUXE DESIGN) --- */
+        :root {
+            --deep-blue: #0A2463;
+            --cream: #F8F8F8;
+            --gold: #D4AF37;
+            --neon-turquoise: #00F5D4;
+            --soft-coral: #FF9E7D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--deep-blue);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Navbar (Sticky con cambio de color) */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(10, 36, 99, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            margin-left: 2.5rem;
+            text-decoration: none;
+            color: var(--cream);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--neon-turquoise);
+            transition: width 0.3s;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            color: var(--cream);
+        }
+
+        /* Hero Section con Video */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--cream);
+            overflow: hidden;
+            background: url("{{ url_for('static', filename='img/Muelle.jpg') }}") center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--neon-turquoise);
+            color: var(--deep-blue);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 245, 212, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 245, 212, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--cream);
+            color: var(--cream);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--cream);
+            color: var(--deep-blue);
+        }
+
+        /* Secciones con Efecto Parallax */
+        .section {
+            padding: 8rem 10%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--deep-blue);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Cards 3D */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 320px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s, box-shadow 0.5s;
+            transform-style: preserve-3d;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--deep-blue);
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Sección de Ferries */
+        .ferries-section {
+            background-color: var(--deep-blue);
+            color: var(--cream);
+        }
+
+        .ferry-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ferry-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--neon-turquoise);
+            color: var(--neon-turquoise);
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .ferry-btn:hover {
+            background: var(--neon-turquoise);
+            color: var(--deep-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Testimonios */
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-card .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .testimonial-card .author {
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-blue);
+            color: var(--cream);
+            padding: 5rem 10% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-column p,
+        .footer-column a {
+            margin-bottom: 1rem;
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--neon-turquoise);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--cream);
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--neon-turquoise);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 70px;
+            height: 70px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--deep-blue);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.5s;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .nav-links li a {
+                margin-left: 0;
+                font-size: 1.2rem;
+            }
+
+            .burger {
+                display: block;
+                z-index: 1000;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.8rem;
+            }
+
+            .section {
+                padding: 5rem 8%;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="logo">MAYA ADVENTURE</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#ferries">Ferries</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#dining">Dining</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section con Video -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover the <span>Luxury</span> of Caribbean Pier</h1>
+            <p>Where the turquoise sea meets unparalleled elegance in Playa del Carmen</p>
+            <div class="hero-buttons">
+                <a href="#ferries" class="btn">Explore Ferries</a>
+                <a href="#experiences" class="btn btn-outline">Our Experiences</a>
+            </div>
+        </div>
+    </section>
+    <!-- Sección de Ferries -->
+    <section id="ferries" class="section ferries-section">
+        <img src="{{ url_for('static', filename='img/ferries.jpg') }}" alt="Ferry Background" class="parallax-bg">
+        <div class="section-title">
+            <h2>Premium Ferry Services</h2>
+        </div>
+        <p
+            style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+            Travel in style between Playa del Carmen and Cozumel with our luxury ferry partners. Enjoy premium amenities
+            and breathtaking views of the Caribbean Sea.
+        </p>
+        <div class="ferry-buttons">
+            <a href="https://www.ultramarferry.com/es" class="ferry-btn" target="_blank">Ultramar</a>
+            <a href="https://winjet.mx/" class="ferry-btn" target="_blank">Winjet</a>
+            <a href="https://www.xailing.com/es/" class="ferry-btn" target="_blank">Xcaret Ferry</a>
+
+        </div>
+    </section>
+
+    <!-- Sección de Experiencias -->
+    <section id="experiences" class="section">
+        <div class="section-title">
+            <h2>Signature Experiences</h2>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+                        alt="Private Yacht">
+                </div>
+                <div class="card-content">
+                    <h3>Private Yacht Charter</h3>
+                    <p>Experience the Caribbean in ultimate privacy with our luxury yacht rentals, complete with crew
+                        and gourmet catering.</p>
+                    <div class="price">From $1,200/day</div>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+                        alt="Cenote Tour">
+                </div>
+                <div class="card-content">
+                    <h3>Exclusive Cenote Tour</h3>
+                    <p>Discover hidden cenotes with our private guides, featuring crystal-clear waters and ancient rock
+                        formations.</p>
+                    <div class="price">$189/person</div>
+                    <a href="#contact" class="btn">Book Adventure</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+                        alt="Gourmet Dinner">
+                </div>
+                <div class="card-content">
+                    <h3>Sunset Gourmet Dinner</h3>
+                    <p>Five-course dining experience on a private catamaran as you watch the sunset over the Caribbean.
+                    </p>
+                    <div class="price">$250/couple</div>
+                    <a href="#contact" class="btn">Reserve Table</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Restaurantes -->
+    <section id="dining" class="section bg-light">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+            alt="Dining Background" class="parallax-bg">
+        <div class="section-title">
+            <h2>Gourmet Dining</h2>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-img">
+                    <img src="{{ url_for('static', filename='img/hrcafe.jpg') }}" alt="Hard Rock Cafe">
+
+                </div>
+                <div class="card-content">
+                    <h3>HARD ROCK Restaurant</h3>
+                    <p>Experiential Dining Like Never Before</p>
+                    <div class="price">$$$$</div>
+                    <a href="https://hotel.hardrock.com/riviera-maya/es/restaurantes.aspx" class="btn">Make
+                        Reservation</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="{{ url_for('static', filename='img/lasplamas.jpg') }}" alt="las palmas">
+                </div>
+                <div class="card-content">
+                    <h3>Las Palmas</h3>
+                    <p>Here, food is more than just a meal — it’s a celebration for the senses and a craving for the
+                        good life. We believe you deserve the best, and that starts with quality ingredients: local
+                        produce, premium meats, and fresh seafood. Add top-shelf spirits, and you’ve got complete
+                        satisfaction.</p>
+                    <div class="price">$$$</div>
+                    <a href="https://www.tripadvisor.com.mx/Restaurant_Review-g150809-d2572334-Reviews-Las_Palmas-Cozumel_Yucatan_Peninsula.html"
+                        class="btn">View Menu</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="{{ url_for('static', filename='img/hooters.jpg') }}" alt="Mayan Cuisine">
+                </div>
+                <div class="card-content">
+                    <h3>Hooters</h3>
+                    <p>We know, even if you’re not into spicy, you’re into hot. That’s why all of our seriously
+                        craveable flavors are the best of the best. Wings, burgers, shrimp, all the things that make you
+                        drool.</p>
+                    <div class="price">$$</div>
+                    <a href="https://www.hooters.com/locations/40164-cozumel" class="btn">Reserve Table</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="section" style="background-color: #f0f4f8;">
+        <div class="section-title">
+            <h2>Guest Experiences</h2>
+        </div>
+
+        <div class="cards-container"
+            style="display: flex; gap: 2rem; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 1rem;">
+            <div class="testimonial-card" style="min-width: 300px;">
+                <p class="quote">"The private yacht charter was worth every penny. The crew anticipated our every need,
+                    and swimming in secluded coves was magical."</p>
+                <p class="author">- The Johnson Family, New York</p>
+            </div>
+
+            <div class="testimonial-card" style="min-width: 300px;">
+                <p class="quote">"Staying at the boutique hotel felt like a dream. The ocean view from our balcony and
+                    the gourmet breakfast every morning made it unforgettable."</p>
+                <p class="author">- Carla & Diego, CDMX</p>
+            </div>
+
+            <div class="testimonial-card" style="min-width: 300px;">
+                <p class="quote">"The cenote tour was surreal. Our guide shared fascinating Mayan history, and the
+                    photos we took are simply breathtaking."</p>
+                <p class="author">- Lucas P., Toronto</p>
+            </div>
+        </div>
+    </section>
+    <style>
+        .cards-container {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+    </style>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Caribbean Luxe</h3>
+                <p>Av. 10 Norte, Playa del Carmen</p>
+                <p>Quintana Roo, Mexico</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#ferries">Ferry Services</a>
+                <a href="#experiences">Experiences</a>
+                <a href="#dining">Dining</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p><i class="fas fa-phone"></i> +52 984 123 4567</p>
+                <p><i class="fas fa-envelope"></i> concierge@caribbeanluxe.com</p>
+                <p><i class="fas fa-clock"></i> 24/7 Concierge</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Caribbean Luxe Pier. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/529841234567" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.querySelector('.burger').addEventListener('click', function () {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('fa-times');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Cerrar menú móvil si está abierto
+                if (document.querySelector('.nav-links').classList.contains('active')) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.burger').classList.remove('fa-times');
+                }
+            });
+        });
+
+        // Efecto Parallax
+        window.addEventListener('scroll', function () {
+            const parallaxBg = document.querySelectorAll('.parallax-bg');
+            const scrollPosition = window.pageYOffset;
+
+            parallaxBg.forEach(bg => {
+                bg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>
