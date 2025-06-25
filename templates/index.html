@@ -4,704 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Playa | Playa del Carmen</title>
+    <title>Maya Adventure | Playa del Carmen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
-    <style>
-    /* Add these styles at the end of your media queries section */
 
-@media (max-width: 768px) {
-    /* Card adjustments */
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        overflow-x: visible;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 
-    .card {
-        width: 100%;
-        max-width: 350px;
-    }
-
-    /* Specific adjustments for testimonials section */
-    .testimonial-card {
-        min-width: 100% !important;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Remove horizontal scrolling on mobile */
-    .cards-container {
-        flex-wrap: wrap;
-        overflow-x: visible;
-        padding-bottom: 0;
-    }
-}
-
-@media (max-width: 576px) {
-    .card {
-        max-width: 100%;
-    }
-
-    .card-content {
-        padding: 1.5rem;
-    }
-
-    .card h3 {
-        font-size: 1.3rem;
-    }
-
-    .card p {
-        font-size: 0.95rem;
-    }
-
-    .price {
-        font-size: 1.1rem;
-    }
-
-    .btn {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
-    }
-}
-        /* --- CSS STYLES (LUXE DESIGN) --- */
-        :root {
-            --deep-blue: #0A2463;
-            --cream: #F8F8F8;
-            --gold: #D4AF37;
-            --neon-turquoise: #00F5D4;
-            --soft-coral: #FF9E7D;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cream);
-            color: var(--deep-blue);
-            overflow-x: hidden;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        /* Navbar (Sticky with color change) */
-        nav {
-            position: fixed;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: all 0.5s ease;
-        }
-
-        nav.scrolled {
-            background-color: rgba(10, 36, 99, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-            padding: 1rem 5%;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li a {
-            margin-left: 2.5rem;
-            text-decoration: none;
-            color: var(--cream);
-            font-weight: 600;
-            position: relative;
-        }
-
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--neon-turquoise);
-            transition: width 0.3s;
-        }
-
-        .nav-links li a:hover::after {
-            width: 100%;
-        }
-
-        .burger {
-            display: none;
-            cursor: pointer;
-            color: var(--cream);
-        }
-
-        /* Hero Section with Video */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--cream);
-            overflow: hidden;
-            background: url("{{ url_for('static', filename='img/Muelle.jpg') }}") center/cover no-repeat;
-            background-attachment: fixed;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: var(--neon-turquoise);
-            color: var(--deep-blue);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 245, 212, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 245, 212, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--cream);
-            color: var(--cream);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background: var(--cream);
-            color: var(--deep-blue);
-        }
-
-        /* Sections with Parallax Effect */
-        .section {
-            padding: 8rem 10%;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 5rem;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            color: var(--deep-blue);
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background: var(--gold);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        /* 3D Cards */
-        .cards-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            perspective: 1000px;
-        }
-
-        .card {
-            width: 320px;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s, box-shadow 0.5s;
-            transform-style: preserve-3d;
-        }
-
-        .card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-img {
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .card:hover .card-img img {
-            transform: scale(1.1);
-        }
-
-        .card-content {
-            padding: 1.8rem;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--deep-blue);
-        }
-
-        .card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Ferries Section */
-        .ferries-section {
-            background-color: var(--deep-blue);
-            color: var(--cream);
-        }
-
-        .ferry-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .ferry-btn {
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 2px solid var(--neon-turquoise);
-            color: var(--neon-turquoise);
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .ferry-btn:hover {
-            background: var(--neon-turquoise);
-            color: var(--deep-blue);
-            transform: translateY(-3px);
-        }
-
-        /* Styles for announcements section with images */
-    .announcements-section {
-        background-color: #f9f9f9;
-    }
-    
-    .announcement-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-    
-    .announcement-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-    }
-    
-    .announcement-img {
-        height: 200px;
-        overflow: hidden;
-        position: relative;
-    }
-    
-    .announcement-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    
-    .announcement-card:hover .announcement-img img {
-        transform: scale(1.05);
-    }
-    
-    .announcement-content {
-        padding: 1.8rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .announcement-content .date {
-        color: var(--gold);
-        font-weight: 600;
-        font-size: 0.9rem;
-        margin-bottom: 0.8rem;
-    }
-    
-    .announcement-content h3 {
-        color: var(--deep-blue);
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-    }
-    
-    .announcement-content p {
-        color: #666;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-        flex-grow: 1;
-    }
-    
-    .btn-small {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
-        align-self: flex-start;
-        margin-top: auto;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-        .announcement-img {
-            height: 180px;
-        }
-        
-        .announcement-content {
-            padding: 1.5rem;
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .announcement-img {
-            height: 160px;
-        }
-        
-        .announcement-content {
-            padding: 1.2rem;
-        }
-        
-        .announcement-content h3 {
-            font-size: 1.2rem;
-        }
-    }
-
-        /* Maps Section */
-        .map-section {
-            background-color: var(--deep-blue);
-            color: var(--cream);
-        }
-
-        .map-container {
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Promotions Section */
-        .promotions-section {
-            background-color: var(--cream);
-        }
-
-        .promo-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .promo-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .promo-badge {
-            background-color: var(--soft-coral);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* Testimonials */
-        .testimonial-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .testimonial-card .quote {
-            font-size: 1.1rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: #555;
-            line-height: 1.8;
-        }
-
-        .testimonial-card .author {
-            font-weight: 700;
-            color: var(--gold);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--deep-blue);
-            color: var(--cream);
-            padding: 5rem 10% 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--gold);
-        }
-
-        .footer-column p,
-        .footer-column a {
-            margin-bottom: 1rem;
-            display: block;
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column a:hover {
-            color: var(--neon-turquoise);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            color: var(--cream);
-            font-size: 1.3rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--neon-turquoise);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #999;
-        }
-
-        /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 2.5rem;
-            right: 2.5rem;
-            width: 70px;
-            height: 70px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-            z-index: 100;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                height: 100vh;
-                background: var(--deep-blue);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: left 0.5s;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 1.5rem 0;
-            }
-
-            .nav-links li a {
-                margin-left: 0;
-                font-size: 1.2rem;
-            }
-
-            .burger {
-                display: block;
-                z-index: 1000;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .btn {
-                padding: 0.8rem 1.8rem;
-            }
-
-            .section {
-                padding: 5rem 8%;
-            }
-
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-
-            .map-container {
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-
-            .section {
-                padding: 4rem 5%;
-            }
-
-            .map-container {
-                height: 300px;
-            }
-        }
-    </style>
 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
 </head>
 
 <body>
     <!-- Navbar -->
     <nav id="navbar">
-        <div class="logo">MAYA ADVENTURE</div>
+        <div class="logo">MAY ADVENTURE</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#ferries">Ferries</a></li>
@@ -715,6 +36,348 @@
         </div>
     </nav>
 
+
+
+    <section id="ferries" class="section ferries-section">
+        <div class="section-title">
+            <h2>Ferry Services to Cozumel</h2>
+        </div>
+    
+        <div class="ferry-buttons-container">
+            <!-- ULTRAMAR -->
+            <div class="ferry-button-card">
+                <a href="https://www.ultramarferry.com/es" class="ferry-company-link" target="_blank">
+                    <img src="{{ url_for('static', filename='img/ultramar.png') }}" 
+                         alt="Ultramar Ferry" class="ferry-button-logo">
+                    <span>View Schedules & Tickets</span>
+                </a>
+            </div>
+    
+            <!-- WINJET -->
+            <div class="ferry-button-card">
+                <a href="https://winjet.mx/" class="ferry-company-link" target="_blank">
+                    <img src="{{ url_for('static', filename='img/winjet.png') }}" 
+                         alt="Winjet Ferry" class="ferry-button-logo">
+                    <span>View Schedules & Tickets</span>
+                </a>
+            </div>
+    
+            <!-- XCARET -->
+            <div class="ferry-button-card">
+                <a href="https://www.xailing.com/es/" class="ferry-company-link" target="_blank">
+                    <img src="{{ url_for('static', filename='img/xcaret.png') }}" 
+                         alt="Xcaret Ferry" class="ferry-button-logo">
+                    <span>View Schedules & Tickets</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+    <!-- Announcements Section with Images -->
+    <section id="announcements" class="section announcements-section">
+        <div class="section-title">
+            <h2>Important Announcements</h2>
+        </div>
+
+        <div class="cards-container">
+            <div class="announcement-card">
+                <div class="announcement-img">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        alt="Ferry">
+                </div>
+                <div class="announcement-content">
+                    <div class="date">JUNE 15, 2023</div>
+                    <h3>New Ferry Schedules</h3>
+                    <p>Starting June 20th, there will be additional weekend departures to Cozumel. Check the new
+                        schedules in our ferries section.</p>
+                    <a href="#ferries" class="btn btn-small">View Schedules</a>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <div class="announcement-img">
+                    <img src="https://via.placeholder.com/400x300" alt="Maintenance">
+                </div>
+                <div class="announcement-content">
+                    <div class="date">JUNE 10, 2023</div>
+                    <h3>Scheduled Maintenance</h3>
+                    <p>The main pier will be closed for maintenance on June 25th from 8:00 AM to 2:00 PM. We apologize
+                        for any inconvenience.</p>
+                    <a href="#contact" class="btn btn-small">More Info</a>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <div class="announcement-img">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80"
+                        alt="Festival">
+                </div>
+                <div class="announcement-content">
+                    <div class="date">JUNE 5, 2023</div>
+                    <h3>Special Event</h3>
+                    <p>Don't miss the Sea Festival this Saturday June 17th with live music, local food and activities
+                        for the whole family.</p>
+                    <a href="#contact" class="btn btn-small">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maps Section -->
+    <section id="maps" class="section map-section">
+        <div class="section-title">
+            <h2>Maps & Locations</h2>
+        </div>
+
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.018284321!2d-87.0892947!3d20.6273654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e59cf1a74716d%3A0x1a3b79e03a94a1b3!2sPlaya%20del%20Carmen%2C%20Quintana%20Roo!5e0!3m2!1sen!2smx!4v1686945674140!5m2!1sen!2smx"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+
+    </section>
+
+    <!-- Promotions Section - Modern Style -->
+    <section id="promotions" class="section promotions-section">
+        <div class="section-title">
+            <h2>Special Promotions</h2>
+            <p class="section-subtitle">Take advantage of our exclusive offers</p>
+        </div>
+
+        <div class="promo-grid">
+            <!-- Promotion 1 -->
+            <div class="promo-item promo-featured">
+                <div class="promo-badge">-20%</div>
+                <div class="promo-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');">
+                    <div class="promo-overlay"></div>
+                </div>
+                <div class="promo-content">
+                    <div class="promo-meta">
+                        <span class="promo-category">Family</span>
+                        <span class="promo-duration">Monday-Thursday</span>
+                    </div>
+                    <h3>Family Package</h3>
+                    <p>Special discount for families of 4 or more on all ferry services.</p>
+                    <div class="promo-price">
+                        <span class="old-price">$1,200</span>
+                        <span class="current-price">$960</span>
+                    </div>
+                    <a href="#contact" class="btn btn-promo">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Promotion 2 -->
+            <div class="promo-item">
+                <div class="promo-badge">2x1</div>
+                <div class="promo-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');">
+                    <div class="promo-overlay"></div>
+                </div>
+                <div class="promo-content">
+                    <div class="promo-meta">
+                        <span class="promo-category">Combo</span>
+                        <span class="promo-duration">Limited season</span>
+                    </div>
+                    <h3>Tour + Ferry</h3>
+                    <p>Book any tour and get your round-trip ferry ticket for free.</p>
+                    <div class="promo-price">
+                        <span class="current-price only">Special Offer</span>
+                    </div>
+                    <a href="#contact" class="btn btn-promo">More Information</a>
+                </div>
+            </div>
+
+            <!-- Promotion 3 -->
+            <div class="promo-item">
+                <div class="promo-badge">15% OFF</div>
+                <div class="promo-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');">
+                    <div class="promo-overlay"></div>
+                </div>
+                <div class="promo-content">
+                    <div class="promo-meta">
+                        <span class="promo-category">Package</span>
+                        <span class="promo-duration">July-August</span>
+                    </div>
+                    <h3>Summer 2023</h3>
+                    <p>All-inclusive package: Ferry, hotel and activities with special discount.</p>
+                    <div class="promo-price">
+                        <span class="current-price">From $2,500</span>
+                    </div>
+                    <a href="#contact" class="btn btn-promo">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section - Modern Style -->
+    <section id="experiences" class="section experiences-section">
+        <div class="section-title">
+            <h2>Unique Experiences</h2>
+            <p class="section-subtitle">Live unforgettable adventures in the Caribbean</p>
+        </div>
+
+        <div class="experience-slider">
+            <!-- Experience 1 -->
+            <div class="experience-card">
+                <div class="exp-image-container">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+                        alt="Private Yacht">
+                    <div class="exp-price-tag">$1,200/day</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Private Yacht Tour</h3>
+                    <div class="exp-meta">
+                        <span><i class="fas fa-clock"></i> 8 hours</span>
+                        <span><i class="fas fa-users"></i> Up to 10 people</span>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                    </div>
+                    <p>Experience the Caribbean in privacy with our luxury yacht rentals, complete with crew and gourmet
+                        catering.</p>
+                    <div class="exp-actions">
+                        <a href="#contact" class="btn btn-exp">Book Now</a>
+                        <a href="#" class="exp-details">View details <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 2 -->
+            <div class="experience-card">
+                <div class="exp-image-container">
+                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+                        alt="Cenotes">
+                    <div class="exp-price-tag">$189/person</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Exclusive Cenotes Tour</h3>
+                    <div class="exp-meta">
+                        <span><i class="fas fa-clock"></i> 6 hours</span>
+                        <span><i class="fas fa-users"></i> Small groups</span>
+                        <span><i class="fas fa-star"></i> 5/5</span>
+                    </div>
+                    <p>Discover hidden cenotes with our private guides, featuring crystal clear waters and ancient rock
+                        formations.</p>
+                    <div class="exp-actions">
+                        <a href="#contact" class="btn btn-exp">Book Now</a>
+                        <a href="#" class="exp-details">View details <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience 3 -->
+            <div class="experience-card">
+                <div class="exp-image-container">
+                    <img src="https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80"
+                        alt="Gourmet Dinner">
+                    <div class="exp-price-tag">$250/couple</div>
+                </div>
+                <div class="exp-content">
+                    <h3>Sunset Gourmet Dinner</h3>
+                    <div class="exp-meta">
+                        <span><i class="fas fa-clock"></i> 3 hours</span>
+                        <span><i class="fas fa-utensils"></i> 5 courses</span>
+                        <span><i class="fas fa-star"></i> 4.8/5</span>
+                    </div>
+                    <p>Five-course gastronomic experience on a private catamaran while watching the Caribbean sunset.
+                    </p>
+                    <div class="exp-actions">
+                        <a href="#contact" class="btn btn-exp">Book Now</a>
+                        <a href="#" class="exp-details">View details <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section - Modern Style -->
+    <section class="section testimonials-section" style="background-color: #f0f4f8;">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+            <p class="section-subtitle">Real experiences from travelers like you</p>
+        </div>
+
+        <div class="testimonials-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-modern">
+                <div class="testimonial-header">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Johnson Family"
+                        class="testimonial-avatar">
+                    <div class="testimonial-author">
+                        <h4>Johnson Family</h4>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="testimonial-quote">"The private yacht tour was worth every penny. The crew anticipated our
+                    every need and swimming in private coves was magical."</p>
+                <div class="testimonial-footer">
+                    <span class="testimonial-location">New York, USA</span>
+                    <span class="testimonial-date">June 2023</span>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-modern">
+                <div class="testimonial-header">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Carla & Diego"
+                        class="testimonial-avatar">
+                    <div class="testimonial-author">
+                        <h4>Carla & Diego</h4>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="testimonial-quote">"Staying at the boutique hotel was like a dream. The ocean view from our
+                    balcony and gourmet breakfast every morning made it unforgettable."</p>
+                <div class="testimonial-footer">
+                    <span class="testimonial-location">Mexico City, Mexico</span>
+                    <span class="testimonial-date">May 2023</span>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-modern">
+                <div class="testimonial-header">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Lucas P." class="testimonial-avatar">
+                    <div class="testimonial-author">
+                        <h4>Lucas P.</h4>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="testimonial-quote">"The cenotes tour was surreal. Our guide shared fascinating Mayan history
+                    and the photos we took are simply stunning."</p>
+                <div class="testimonial-footer">
+                    <span class="testimonial-location">Toronto, Canada</span>
+                    <span class="testimonial-date">April 2023</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
@@ -727,634 +390,7 @@
         </div>
     </section>
 
-    <!-- Ferries Section -->
-    <section id="ferries" class="section ferries-section">
-        <img src="{{ url_for('static', filename='img/ferries.jpg') }}" alt="Ferry Background" class="parallax-bg">
-        <div class="section-title">
-            <h2>Ferry Services</h2>
-        </div>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
-            Connecting Playa del Carmen with Cozumel with the most reliable and comfortable services in the Caribbean.
-        </p>
-        <div class="ferry-buttons">
-            <a href="https://www.ultramarferry.com/es" class="ferry-btn" target="_blank">Ultramar</a>
-            <a href="https://winjet.mx/" class="ferry-btn" target="_blank">Winjet</a>
-            <a href="https://www.xailing.com/es/" class="ferry-btn" target="_blank">Xcaret Ferry</a>
-        </div>
-    </section>
 
-<!-- Announcements Section with Images -->
-<section id="announcements" class="section announcements-section">
-    <div class="section-title">
-        <h2>Important Announcements</h2>
-    </div>
-    
-    <div class="cards-container">
-        <div class="announcement-card">
-            <div class="announcement-img">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ferry">
-            </div>
-            <div class="announcement-content">
-                <div class="date">JUNE 15, 2023</div>
-                <h3>New Ferry Schedules</h3>
-                <p>Starting June 20th, there will be additional weekend departures to Cozumel. Check the new schedules in our ferries section.</p>
-                <a href="#ferries" class="btn btn-small">View Schedules</a>
-            </div>
-        </div>
-        
-        <div class="announcement-card">
-            <div class="announcement-img">
-                <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Maintenance">
-            </div>
-            <div class="announcement-content">
-                <div class="date">JUNE 10, 2023</div>
-                <h3>Scheduled Maintenance</h3>
-                <p>The main pier will be closed for maintenance on June 25th from 8:00 AM to 2:00 PM. We apologize for any inconvenience.</p>
-                <a href="#contact" class="btn btn-small">More Info</a>
-            </div>
-        </div>
-        
-        <div class="announcement-card">
-            <div class="announcement-img">
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Festival">
-            </div>
-            <div class="announcement-content">
-                <div class="date">JUNE 5, 2023</div>
-                <h3>Special Event</h3>
-                <p>Don't miss the Sea Festival this Saturday June 17th with live music, local food and activities for the whole family.</p>
-                <a href="#contact" class="btn btn-small">Book Now</a>
-            </div>
-        </div>
-    </div>
-</section>
-    <!-- Maps Section -->
-    <section id="maps" class="section map-section">
-        <div class="section-title">
-            <h2>Maps & Locations</h2>
-        </div>
-        
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.018284321!2d-87.0892947!3d20.6273654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e59cf1a74716d%3A0x1a3b79e03a94a1b3!2sPlaya%20del%20Carmen%2C%20Quintana%20Roo!5e0!3m2!1sen!2smx!4v1686945674140!5m2!1sen!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        
-        
-    </section>
-
-    <!-- Promotions Section - Modern Style -->
-<section id="promotions" class="section promotions-section">
-    <div class="section-title">
-        <h2>Special Promotions</h2>
-        <p class="section-subtitle">Take advantage of our exclusive offers</p>
-    </div>
-    
-    <div class="promo-grid">
-        <!-- Promotion 1 -->
-        <div class="promo-item promo-featured">
-            <div class="promo-badge">-20%</div>
-            <div class="promo-image" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');">
-                <div class="promo-overlay"></div>
-            </div>
-            <div class="promo-content">
-                <div class="promo-meta">
-                    <span class="promo-category">Family</span>
-                    <span class="promo-duration">Monday-Thursday</span>
-                </div>
-                <h3>Family Package</h3>
-                <p>Special discount for families of 4 or more on all ferry services.</p>
-                <div class="promo-price">
-                    <span class="old-price">$1,200</span>
-                    <span class="current-price">$960</span>
-                </div>
-                <a href="#contact" class="btn btn-promo">Book Now</a>
-            </div>
-        </div>
-        
-        <!-- Promotion 2 -->
-        <div class="promo-item">
-            <div class="promo-badge">2x1</div>
-            <div class="promo-image" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');">
-                <div class="promo-overlay"></div>
-            </div>
-            <div class="promo-content">
-                <div class="promo-meta">
-                    <span class="promo-category">Combo</span>
-                    <span class="promo-duration">Limited season</span>
-                </div>
-                <h3>Tour + Ferry</h3>
-                <p>Book any tour and get your round-trip ferry ticket for free.</p>
-                <div class="promo-price">
-                    <span class="current-price only">Special Offer</span>
-                </div>
-                <a href="#contact" class="btn btn-promo">More Information</a>
-            </div>
-        </div>
-        
-        <!-- Promotion 3 -->
-        <div class="promo-item">
-            <div class="promo-badge">15% OFF</div>
-            <div class="promo-image" style="background-image: url('https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');">
-                <div class="promo-overlay"></div>
-            </div>
-            <div class="promo-content">
-                <div class="promo-meta">
-                    <span class="promo-category">Package</span>
-                    <span class="promo-duration">July-August</span>
-                </div>
-                <h3>Summer 2023</h3>
-                <p>All-inclusive package: Ferry, hotel and activities with special discount.</p>
-                <div class="promo-price">
-                    <span class="current-price">From $2,500</span>
-                </div>
-                <a href="#contact" class="btn btn-promo">View Packages</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Experiences Section - Modern Style -->
-<section id="experiences" class="section experiences-section">
-    <div class="section-title">
-        <h2>Unique Experiences</h2>
-        <p class="section-subtitle">Live unforgettable adventures in the Caribbean</p>
-    </div>
-    
-    <div class="experience-slider">
-        <!-- Experience 1 -->
-        <div class="experience-card">
-            <div class="exp-image-container">
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Private Yacht">
-                <div class="exp-price-tag">$1,200/day</div>
-            </div>
-            <div class="exp-content">
-                <h3>Private Yacht Tour</h3>
-                <div class="exp-meta">
-                    <span><i class="fas fa-clock"></i> 8 hours</span>
-                    <span><i class="fas fa-users"></i> Up to 10 people</span>
-                    <span><i class="fas fa-star"></i> 4.9/5</span>
-                </div>
-                <p>Experience the Caribbean in privacy with our luxury yacht rentals, complete with crew and gourmet catering.</p>
-                <div class="exp-actions">
-                    <a href="#contact" class="btn btn-exp">Book Now</a>
-                    <a href="#" class="exp-details">View details <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Experience 2 -->
-        <div class="experience-card">
-            <div class="exp-image-container">
-                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Cenotes">
-                <div class="exp-price-tag">$189/person</div>
-            </div>
-            <div class="exp-content">
-                <h3>Exclusive Cenotes Tour</h3>
-                <div class="exp-meta">
-                    <span><i class="fas fa-clock"></i> 6 hours</span>
-                    <span><i class="fas fa-users"></i> Small groups</span>
-                    <span><i class="fas fa-star"></i> 5/5</span>
-                </div>
-                <p>Discover hidden cenotes with our private guides, featuring crystal clear waters and ancient rock formations.</p>
-                <div class="exp-actions">
-                    <a href="#contact" class="btn btn-exp">Book Now</a>
-                    <a href="#" class="exp-details">View details <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Experience 3 -->
-        <div class="experience-card">
-            <div class="exp-image-container">
-                <img src="https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Gourmet Dinner">
-                <div class="exp-price-tag">$250/couple</div>
-            </div>
-            <div class="exp-content">
-                <h3>Sunset Gourmet Dinner</h3>
-                <div class="exp-meta">
-                    <span><i class="fas fa-clock"></i> 3 hours</span>
-                    <span><i class="fas fa-utensils"></i> 5 courses</span>
-                    <span><i class="fas fa-star"></i> 4.8/5</span>
-                </div>
-                <p>Five-course gastronomic experience on a private catamaran while watching the Caribbean sunset.</p>
-                <div class="exp-actions">
-                    <a href="#contact" class="btn btn-exp">Book Now</a>
-                    <a href="#" class="exp-details">View details <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials Section - Modern Style -->
-<section class="section testimonials-section" style="background-color: #f0f4f8;">
-    <div class="section-title">
-        <h2>What Our Clients Say</h2>
-        <p class="section-subtitle">Real experiences from travelers like you</p>
-    </div>
-    
-    <div class="testimonials-container">
-        <!-- Testimonial 1 -->
-        <div class="testimonial-modern">
-            <div class="testimonial-header">
-                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Johnson Family" class="testimonial-avatar">
-                <div class="testimonial-author">
-                    <h4>Johnson Family</h4>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="testimonial-quote">"The private yacht tour was worth every penny. The crew anticipated our every need and swimming in private coves was magical."</p>
-            <div class="testimonial-footer">
-                <span class="testimonial-location">New York, USA</span>
-                <span class="testimonial-date">June 2023</span>
-            </div>
-        </div>
-        
-        <!-- Testimonial 2 -->
-        <div class="testimonial-modern">
-            <div class="testimonial-header">
-                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Carla & Diego" class="testimonial-avatar">
-                <div class="testimonial-author">
-                    <h4>Carla & Diego</h4>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="testimonial-quote">"Staying at the boutique hotel was like a dream. The ocean view from our balcony and gourmet breakfast every morning made it unforgettable."</p>
-            <div class="testimonial-footer">
-                <span class="testimonial-location">Mexico City, Mexico</span>
-                <span class="testimonial-date">May 2023</span>
-            </div>
-        </div>
-        
-        <!-- Testimonial 3 -->
-        <div class="testimonial-modern">
-            <div class="testimonial-header">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Lucas P." class="testimonial-avatar">
-                <div class="testimonial-author">
-                    <h4>Lucas P.</h4>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="testimonial-quote">"The cenotes tour was surreal. Our guide shared fascinating Mayan history and the photos we took are simply stunning."</p>
-            <div class="testimonial-footer">
-                <span class="testimonial-location">Toronto, Canada</span>
-                <span class="testimonial-date">April 2023</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    /* Styles for modern promotions section */
-    .promotions-section {
-        background-color: #f9f9f9;
-    }
-    
-    .section-subtitle {
-        text-align: center;
-        color: #666;
-        font-size: 1.2rem;
-        margin-top: 1rem;
-        margin-bottom: 3rem;
-    }
-    
-    .promo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    
-    .promo-item {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
-        position: relative;
-    }
-    
-    .promo-featured {
-        grid-column: span 1;
-    }
-    
-    .promo-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    }
-    
-    .promo-image {
-        height: 200px;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-    }
-    
-    .promo-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
-    }
-    
-    .promo-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: var(--soft-coral);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 0.9rem;
-        z-index: 2;
-    }
-    
-    .promo-content {
-        padding: 1.5rem;
-    }
-    
-    .promo-meta {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.8rem;
-        font-size: 0.9rem;
-        color: #666;
-    }
-    
-    .promo-category {
-        background-color: var(--gold);
-        color: white;
-        padding: 0.2rem 0.8rem;
-        border-radius: 50px;
-        font-size: 0.8rem;
-    }
-    
-    .promo-item h3 {
-        color: var(--deep-blue);
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-    }
-    
-    .promo-item p {
-        color: #666;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-    
-    .promo-price {
-        margin-bottom: 1.5rem;
-    }
-    
-    .old-price {
-        text-decoration: line-through;
-        color: #999;
-        margin-right: 0.8rem;
-    }
-    
-    .current-price {
-        color: var(--gold);
-        font-weight: 700;
-        font-size: 1.3rem;
-    }
-    
-    .current-price.only {
-        color: var(--deep-blue);
-    }
-    
-    .btn-promo {
-        width: 100%;
-        text-align: center;
-        background-color: var(--neon-turquoise);
-        color: var(--deep-blue);
-    }
-    
-    /* Styles for modern experiences section */
-    .experiences-section {
-        background-color: white;
-    }
-    
-    .experience-slider {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-    
-    .experience-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
-    }
-    
-    .experience-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    }
-    
-    .exp-image-container {
-        height: 200px;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .exp-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    
-    .experience-card:hover .exp-image-container img {
-        transform: scale(1.1);
-    }
-    
-    .exp-price-tag {
-        position: absolute;
-        bottom: 15px;
-        left: 15px;
-        background-color: var(--gold);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 50px;
-        font-weight: 700;
-    }
-    
-    .exp-content {
-        padding: 1.5rem;
-    }
-    
-    .exp-content h3 {
-        color: var(--deep-blue);
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-    }
-    
-    .exp-meta {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-        color: #666;
-    }
-    
-    .exp-meta i {
-        color: var(--gold);
-        margin-right: 0.3rem;
-    }
-    
-    .exp-content p {
-        color: #666;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-    
-    .exp-actions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .btn-exp {
-        background-color: var(--neon-turquoise);
-        color: var(--deep-blue);
-        padding: 0.7rem 1.5rem;
-    }
-    
-    .exp-details {
-        color: var(--deep-blue);
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: color 0.3s;
-    }
-    
-    .exp-details:hover {
-        color: var(--gold);
-    }
-    
-    .exp-details i {
-        margin-left: 0.3rem;
-        font-size: 0.8rem;
-    }
-    
-    /* Styles for modern testimonials section */
-    .testimonials-section {
-        padding-bottom: 6rem;
-    }
-    
-    .testimonials-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-    
-    .testimonial-modern {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease;
-    }
-    
-    .testimonial-modern:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    }
-    
-    .testimonial-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-    
-    .testimonial-avatar {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 1rem;
-        border: 3px solid var(--gold);
-    }
-    
-    .testimonial-author h4 {
-        color: var(--deep-blue);
-        margin-bottom: 0.3rem;
-    }
-    
-    .testimonial-rating {
-        color: var(--gold);
-        font-size: 0.9rem;
-    }
-    
-    .testimonial-quote {
-        color: #555;
-        font-style: italic;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
-        position: relative;
-        padding-left: 1.5rem;
-    }
-    
-    .testimonial-quote::before {
-        content: '"';
-        position: absolute;
-        left: 0;
-        top: -0.5rem;
-        font-size: 2rem;
-        color: var(--gold);
-        opacity: 0.3;
-        font-family: serif;
-    }
-    
-    .testimonial-footer {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.9rem;
-        color: #888;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-        .promo-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .promo-featured {
-            grid-column: span 1;
-        }
-        
-        .experience-slider, .testimonials-container {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
 
     <!-- Footer -->
     <footer id="contact">
@@ -1384,14 +420,15 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 Maya Adventure. All rights reserved.</p>
+            <p>&copy; 2023 May Adventure. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
+    <!-- WhatsApp Float-->
     <a href="https://wa.me/7774403046" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
 
     <!-- JavaScript -->
     <script>
