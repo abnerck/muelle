@@ -872,12 +872,13 @@
     <!-- Ferry Section -->
     <section id="ferries" class="section ferries-section">
         <div class="section-title">
-            <h2 id="ferries-title">Servicios de ferry a Cozumel</h2>
+            <h2 id="ferries-title">Servicio de Ferry Cozumel–Playa del Carmen</h2>
+            <p id="ferries-subtitle" class="section-subtitle">Ultramar, Winjet, Xcaret Xailing</p>
         </div>
 
         <div class="ferry-buttons-container">
             <div class="ferry-button-card">
-                <a href="https://www.ultramarferry.com/es" class="ferry-company-link" target="_blank">
+                <a href="https://www.ultramarferry.com/es/rutas-y-horarios" class="ferry-company-link" target="_blank" rel="noopener noreferrer">
                     <img src="{{ url_for('static', filename='img/ultramar.png') }}"
                          alt="Ultramar Ferry" class="ferry-button-logo">
                     <span id="ferry-ultramar">Ver horarios y boletos</span>
@@ -885,7 +886,7 @@
             </div>
 
             <div class="ferry-button-card">
-                <a href="https://winjet.mx/" class="ferry-company-link" target="_blank">
+                <a href="https://winjet.mx/" class="ferry-company-link" target="_blank" rel="noopener noreferrer">
                     <img src="{{ url_for('static', filename='img/winjet.png') }}"
                          alt="Winjet Ferry" class="ferry-button-logo">
                     <span id="ferry-winjet">Ver horarios y boletos</span>
@@ -893,7 +894,7 @@
             </div>
 
             <div class="ferry-button-card">
-                <a href="https://www.xailing.com/es/" class="ferry-company-link" target="_blank">
+                <a href="https://www.xailing.com/es/rutas-horarios/" class="ferry-company-link" target="_blank" rel="noopener noreferrer">
                     <img src="{{ url_for('static', filename='img/xcaret.png') }}"
                          alt="Xcaret Ferry" class="ferry-button-logo">
                     <span id="ferry-xcaret">Ver horarios y boletos</span>
@@ -926,19 +927,19 @@
                 </div>
                 <div class="announcement-content">
                     <h3 id="ann-2-title">Mantenimiento programado</h3>
-                    <p id="ann-2-text">El muelle principal estará en mantenimiento el 25 de junio de 8:00 a.m. a 2:00 p.m. Agradecemos tu comprensión.</p>
+                    <p id="ann-2-text">El muelle principal podrá estar en mantenimiento en fechas programadas. Agradecemos tu comprensión.</p>
                     <a id="ann-2-btn" href="#contact" class="btn btn-small">Más información</a>
                 </div>
             </div>
 
             <div class="announcement-card">
                 <div class="announcement-img">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festival">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Semana Santa">
                 </div>
                 <div class="announcement-content">
-                    <h3 id="ann-3-title">Evento especial</h3>
-                    <p id="ann-3-text">No te pierdas el Festival del Mar este sábado 17 de junio con música en vivo, gastronomía local y actividades para toda la familia.</p>
-                    <a id="ann-3-btn" href="#contact" class="btn btn-small">Reservar</a>
+                    <h3 id="ann-3-title">Semana Santa</h3>
+                    <p id="ann-3-text">Son días de alto tránsito en la ruta de navegación entre la isla y el continente. Sea paciente en las filas y disfrute de la vista.</p>
+                    <a id="ann-3-btn" href="#ferries" class="btn btn-small">Ver horarios</a>
                 </div>
             </div>
         </div>
@@ -1226,7 +1227,8 @@
                 'hero-title': 'Descubre la isla de Cozumel y Playa del Carmen',
                 'hero-subtitle': 'Conviértete en tu propio guía y vive cada aventura a tu ritmo',
                 'hero-cta': 'Horarios de ferry',
-                'ferries-title': 'Servicios de ferry a Cozumel',
+                'ferries-title': 'Servicio de Ferry Cozumel–Playa del Carmen',
+                'ferries-subtitle': 'Ultramar, Winjet, Xcaret Xailing',
                 'ferry-ultramar': 'Ver horarios y boletos',
                 'ferry-winjet': 'Ver horarios y boletos',
                 'ferry-xcaret': 'Ver horarios y boletos',
@@ -1235,11 +1237,11 @@
                 'ann-1-text': 'Estamos al día con la seguridad y seguimos mejorando nuestras instalaciones para hacer la terminal marítima más segura de México.',
                 'ann-1-btn': 'Ver horarios',
                 'ann-2-title': 'Mantenimiento programado',
-                'ann-2-text': 'El muelle principal estará en mantenimiento el 25 de junio de 8:00 a.m. a 2:00 p.m. Agradecemos tu comprensión.',
+                'ann-2-text': 'El muelle principal podrá estar en mantenimiento en fechas programadas. Agradecemos tu comprensión.',
                 'ann-2-btn': 'Más información',
-                'ann-3-title': 'Evento especial',
-                'ann-3-text': 'No te pierdas el Festival del Mar este sábado 17 de junio con música en vivo, gastronomía local y actividades para toda la familia.',
-                'ann-3-btn': 'Reservar',
+                'ann-3-title': 'Semana Santa',
+                'ann-3-text': 'Son días de alto tránsito en la ruta de navegación entre la isla y el continente. Sea paciente en las filas y disfrute de la vista.',
+                'ann-3-btn': 'Ver horarios',
                 'map-title': 'Mapa turístico',
                 'promotions-title': 'Promociones especiales',
                 'promotions-subtitle': 'Aprovecha nuestras promociones destacadas',
@@ -1283,7 +1285,8 @@
                 'hero-title': 'Discover Cozumel Island and Playa del Carmen',
                 'hero-subtitle': 'Become your own guide and enjoy each adventure at your pace',
                 'hero-cta': 'Ferry schedules',
-                'ferries-title': 'Ferry services to Cozumel',
+                'ferries-title': 'Cozumel–Playa del Carmen ferry service',
+                'ferries-subtitle': 'Ultramar, Winjet, Xcaret Xailing',
                 'ferry-ultramar': 'View schedules and tickets',
                 'ferry-winjet': 'View schedules and tickets',
                 'ferry-xcaret': 'View schedules and tickets',
@@ -1292,11 +1295,11 @@
                 'ann-1-text': 'We stay up to date with safety standards and continuously improve our facilities to make this maritime terminal one of the safest in Mexico.',
                 'ann-1-btn': 'View schedules',
                 'ann-2-title': 'Scheduled maintenance',
-                'ann-2-text': 'The main pier will be under maintenance on June 25 from 8:00 a.m. to 2:00 p.m. Thank you for your understanding.',
+                'ann-2-text': 'The main pier may be closed for scheduled maintenance on certain dates. Thank you for your understanding.',
                 'ann-2-btn': 'More info',
-                'ann-3-title': 'Special event',
-                'ann-3-text': 'Do not miss the Sea Festival this Saturday, June 17, with live music, local food, and activities for the whole family.',
-                'ann-3-btn': 'Book now',
+                'ann-3-title': 'Holy Week',
+                'ann-3-text': 'These are high-traffic days on the route between the island and the mainland. Please be patient in line and enjoy the view.',
+                'ann-3-btn': 'View schedules',
                 'map-title': 'Tourist map',
                 'promotions-title': 'Special promotions',
                 'promotions-subtitle': 'Take advantage of our featured deals',
