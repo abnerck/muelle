@@ -251,12 +251,27 @@
             width: 150px;
             height: 80px;
             object-fit: contain;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
-        .ferry-company-link span {
+        .ferry-company-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            letter-spacing: 0.02em;
+            text-align: center;
+        }
+
+        .ferry-company-link .ferry-cta {
             font-weight: 600;
             color: #3498db;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .ferry-company-link:hover .ferry-cta {
+            color: #2980b9;
         }
 
         /* Announcements Section */
@@ -881,7 +896,8 @@
                 <a href="https://www.ultramarferry.com/es/rutas-y-horarios" class="ferry-company-link" target="_blank" rel="noopener noreferrer">
                     <img src="{{ url_for('static', filename='img/ultramar.png') }}"
                          alt="Ultramar Ferry" class="ferry-button-logo">
-                    <span id="ferry-ultramar">Ver horarios y boletos</span>
+                    <span class="ferry-company-name">Ultramar</span>
+                    <span class="ferry-cta" id="ferry-ultramar">Ver horarios y boletos</span>
                 </a>
             </div>
 
@@ -889,7 +905,8 @@
                 <a href="https://winjet.mx/" class="ferry-company-link" target="_blank" rel="noopener noreferrer">
                     <img src="{{ url_for('static', filename='img/winjet.png') }}"
                          alt="Winjet Ferry" class="ferry-button-logo">
-                    <span id="ferry-winjet">Ver horarios y boletos</span>
+                    <span class="ferry-company-name">Winjet</span>
+                    <span class="ferry-cta" id="ferry-winjet">Ver horarios y boletos</span>
                 </a>
             </div>
 
@@ -897,7 +914,8 @@
                 <a href="https://www.xailing.com/es/rutas-horarios/" class="ferry-company-link" target="_blank" rel="noopener noreferrer">
                     <img src="{{ url_for('static', filename='img/xcaret.png') }}"
                          alt="Xcaret Ferry" class="ferry-button-logo">
-                    <span id="ferry-xcaret">Ver horarios y boletos</span>
+                    <span class="ferry-company-name">Xcaret Xailing</span>
+                    <span class="ferry-cta" id="ferry-xcaret">Ver horarios y boletos</span>
                 </a>
             </div>
         </div>
